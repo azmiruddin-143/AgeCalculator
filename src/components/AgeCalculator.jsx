@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import azmirUddin from'../assets/Azmir Uddin.jpg'
 
 const AgeCalculator = () => {
     const [dob, setDob] = useState({ year: "", month: "", day: "" });
@@ -21,7 +20,7 @@ const AgeCalculator = () => {
         const { year, month, day } = dob;
 
         if (!year || !month || !day) {
-            setError("দয়া করে সকল তথ্য দিন");
+            setError("দয়া করে সকল তথ্য দিন ⚠️");
             return;
         }
 
@@ -42,15 +41,24 @@ const AgeCalculator = () => {
             months += 12;
         }
 
-        setResult(`আপনার বয়স: ${years} বছর, ${months} মাস, ${days} দিন`);
+        setResult(`আপনার বয়স: ${years} বছর, ${months} মাস, ${days} দিন 🧓`);
     };
 
     return (
 
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
-            <img className='absolute w-16 border border-black top-0 right-0 rounded-full' src={azmirUddin} alt="" />
+        <div className=" relative min-h-screen flex items-center justify-center bg-gray-100">
+
+
+            <a href="https://wa.me/8801933946077"
+                target="_blank"
+                rel="noopener noreferrer">
+                <p className="absolute top-5 right-5 flex items-center space-x-2 text-gray-700 font-semibold">
+                    <span>💻</span>
+                    <span>Developed by Azmir Uddin</span>
+                </p>
+            </a>
             <div className="max-w-md xl:w-full mx-auto mt-10 bg-white p-6 rounded-2xl shadow-lg">
-                <h2 className="text-2xl font-bold text-center mb-4">বয়স গণক</h2>
+                <h2 className="text-2xl font-bold text-center mb-4">Age Calculator</h2>
 
                 <label className="block mb-1 font-semibold">জন্ম সাল</label>
                 <select
@@ -93,12 +101,12 @@ const AgeCalculator = () => {
 
                 <button
                     onClick={calculateAge}
-                    className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+                    className="w-full bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 text-white py-2 rounded hover:from-orange-500 hover:to-orange-700 transition-all duration-300"
                 >
-                    ফলাফল দেখুন
+                    ফলাফল দেখতে এখানে ক্লিক করুন
                 </button>
 
-                {error && <p className="text-red-500 mt-3 text-center">{error}</p>}
+                {error && <p className="text-red-700 mt-3 text-center">{error}</p>}
                 {result && <p className="text-green-600 mt-3 text-center font-semibold">{result}</p>}
             </div>
         </div>
