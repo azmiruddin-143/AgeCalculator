@@ -4,6 +4,9 @@ const AgeCalculator = () => {
     const [dob, setDob] = useState({ year: "", month: "", day: "" });
     const [error, setError] = useState("");
     const [result, setResult] = useState("");
+    const toBengaliNumber = (number) => number.toString().replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+
+
 
     const months = [
         "জানুয়ারি", "ফেব্রুয়ারি", "মার্চ", "এপ্রিল", "মে", "জুন",
@@ -40,8 +43,9 @@ const AgeCalculator = () => {
             years--;
             months += 12;
         }
+        setResult(`আপনার বয়স: ${toBengaliNumber(years)} বছর, ${toBengaliNumber(months)} মাস, ${toBengaliNumber(days)} দিন 🧓`);
 
-        setResult(`আপনার বয়স: ${years} বছর, ${months} মাস, ${days} দিন 🧓`);
+        // setResult(`আপনার বয়স: ${years} বছর, ${months} মাস, ${days} দিন 🧓`);
     };
 
     return (
@@ -49,14 +53,18 @@ const AgeCalculator = () => {
         <div className=" relative min-h-screen flex items-center justify-center bg-gray-100">
 
 
-            <a href="https://wa.me/8801933946077"
+            <a
+                href="https://wa.me/8801933946077"
                 target="_blank"
-                rel="noopener noreferrer">
-                <p className="absolute top-5 right-5 flex items-center space-x-2 text-gray-700 font-semibold">
+                rel="noopener noreferrer"
+            >
+                <p className="absolute whitespace-nowrap  top-5 left-1/2 -translate-x-1/2 md:left-auto md:right-5 md:translate-x-0 flex items-center space-x-2 text-gray-700 font-semibold">
                     <span>💻</span>
                     <span>Developed by Azmir Uddin</span>
                 </p>
+
             </a>
+
             <div className="max-w-md xl:w-full mx-auto mt-10 bg-white p-6 rounded-2xl shadow-lg">
                 <h2 className="text-2xl font-bold text-center mb-4">Age Calculator</h2>
 
@@ -69,9 +77,10 @@ const AgeCalculator = () => {
                 >
                     <option value="">-- সাল নির্বাচন করুন --</option>
                     {Array.from({ length: 2025 - 1960 + 1 }, (_, i) => 1960 + i).map((year) => (
-                        <option key={year} value={year}>{year}</option>
+                        <option key={year} value={year}>{toBengaliNumber(year)}</option>
                     ))}
                 </select>
+
 
                 <label className="block mb-1 font-semibold">জন্ম মাস</label>
                 <select
@@ -95,9 +104,10 @@ const AgeCalculator = () => {
                 >
                     <option value="">-- তারিখ নির্বাচন করুন --</option>
                     {Array.from({ length: 31 }, (_, i) => i + 1).map((day) => (
-                        <option key={day} value={day}>{day}</option>
+                        <option key={day} value={day}>{toBengaliNumber(day)}</option>
                     ))}
                 </select>
+
 
                 <button
                     onClick={calculateAge}
